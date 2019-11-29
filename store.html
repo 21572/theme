@@ -23,7 +23,24 @@
   <link href="css/business-casual.min.css" rel="stylesheet">
 
 </head>
+<!--css-->
+<style>
+.ml9 {
+  position: relative;
+  font-weight: 200;
+  font-size: 4em;
+  color: white;
+  margin-top:-70px;
 
+}
+
+
+.ml9 .letter {
+  transform-origin: 50% 100%;
+  display: inline-block;
+  line-height: 1em;
+}
+</style>
 <body>
 
   <h1 class="site-heading text-center text-white d-none d-lg-block">
@@ -34,7 +51,12 @@
 
     <!-- SUBTITULO DA PAGINA -->
 
-    <span class="site-heading-lower">O Recanto do Barril</span>
+   <!--HTML ANIMAÇÃO PARA O TITULO-->
+    <h1 class="ml9" align="center" >
+      <span class="text-wrapper">
+      <span class="letters">O Recanto do Barril</span>
+    </span>
+    </h1>
   </h1>
   <!-- fim do titulo e subtitulo da pagina-->
 
@@ -157,12 +179,39 @@
     <!-- Bootstrap core JavaScript -->
     <script src="vendor/jquery/jquery.min.js"></script>
     <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/2.0.2/anime.min.js"></script>
   </body>
 
   <!-- Script to highlight the active date in the hours list -->
   <script>
     $('.list-hours li').eq(new Date().getDay()).addClass('today');
   </script>
+
+<!--link das animações da letras do js-->
+
+  <link rel="stylesheet" type=" text/js"href="mystyle/letras_my.js">
+
+<!--javascript-->
+<script>
+// Wrap every letter in a span
+var textWrapper = document.querySelector('.ml9 .letters');
+textWrapper.innerHTML = textWrapper.textContent.replace(/\S/g, "<span class='letter'>$&</span>");
+
+anime.timeline({loop: true})
+  .add({
+    targets: '.ml9 .letter',
+    scale: [0, 1],
+    duration: 1500,
+    elasticity: 600,
+    delay: (el, i) => 45 * (i+1)
+  }).add({
+    targets: '.ml9',
+    opacity: 0,
+    duration: 1000,
+    easing: "easeOutExpo",
+    delay: 1000
+  });
+
+</script>
 
 </html>
